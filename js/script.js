@@ -32,7 +32,7 @@ $( window ).load(function() {
 		set: function(){
 			console.log ($("#slider1").val());
 			var indicator1 = $("#slider1").val()
-			pluto.setSQL("SELECT * FROM pluto where evac_s="+indicator1)
+			pluto.setSQL("SELECT pluto.the_geom_webmercator,pluto.cartodb_id,pluto.sbs_s,sum(schools.grade_code) as score FROM pluto as pluto JOIN schools ON ST_INTERSECTS(pluto.the_geom_webmercator,schools.the_geom_webmercator) GROUP BY pluto.cartodb_id"+indicator1)
 
 
 
