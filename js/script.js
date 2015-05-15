@@ -2,7 +2,7 @@
 var pluto; 
 
 window.onload = function() {
-	  cartodb.createVis('map', 'https://sadra1.cartodb.com/api/v2/viz/3ed6da4e-f2c0-11e4-8364-0e0c41326911/viz.json').done(function (vis, layers){
+	  cartodb.createVis('map', 'https://sadra1.cartodb.com/api/v2/viz/10cfa7ea-f507-11e4-83ab-0e018d66dc29/viz.json').done(function (vis, layers){
 	  	pluto = layers[1].getSubLayer(0);
 	  });
 	}
