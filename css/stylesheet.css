@@ -1,0 +1,51 @@
+body{
+	padding: 0;
+	margin:0;
+}
+
+html, 
+body,
+#map,
+#tools, 
+#data {
+  height: 100%;
+}
+ 
+#map,
+#tools, 
+#data {
+  position: absolute;
+}
+ 
+#map {
+	left: 20vw;
+	width: 60vw;
+	
+}
+ 
+ #tools {
+	width: 20vw;
+	background: #9fa1a4;
+
+}
+
+#data {
+	left: 80vw;
+	width: 20vw;
+	background: #9fa1a4;
+}
+ 
+.in {
+	padding: 2vw;
+}
+
+#slider1,
+#slider2,
+#slider3,
+#slider4,
+#slider5,
+#slider6,
+#slider7 {
+	margin-top: 20px;
+}
+
