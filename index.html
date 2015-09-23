@@ -14,9 +14,18 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>    
         <script src="libraries/noUiSlider.7.0.10/jquery.nouislider.js"></script>        
         <script src="http://libs.cartocdn.com/cartodb.js/v3/3.12/cartodb.js"></script>
-
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.3/lodash.min.js"></script>
         <script src="js/script.js"></script>
+        <script type="text/template" id="schoolsTemplate">
+             <h1>School District <%- pluto.schooldist %> </h1> 
+             <% _.forEach(data, function(school) { %>
+                <li> <%- school.name_1 %></li>
+                <li> <%- code[school.accessible] %></li>
+                <li> <%- school.overall_gr %></li>
+                <li> <%- school.schooldist %></li>
+
+            <% }); %>
+        </script>
         
     </head>
     
@@ -40,7 +49,12 @@
         </div>
         
         <div id='data'> 
-            <div class='in'>data</div> 
+            <div class='in'>
+                <div id='schoolsContainer'>
+                    data
+                </div>
+
+            </div> 
 
         </div>
 
