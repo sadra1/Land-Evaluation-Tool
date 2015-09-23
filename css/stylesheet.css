@@ -33,6 +33,7 @@ body,
 	left: 80vw;
 	width: 20vw;
 	background: #9fa1a4;
+	overflow: scroll;
 }
  
 .in {

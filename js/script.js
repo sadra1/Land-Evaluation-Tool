@@ -1,15 +1,49 @@
 
 var pluto; 
+var accessible_codes ={
+	1: 'within 10 to 15 minuets walking distance',
+	2: 'within 5 to 10 minutes walking distance',
+	3: 'less than 5 minutes walking distance'
+}
+
 
 window.onload = function() {
-	  cartodb.createVis('map', 'https://sadra1.cartodb.com/api/v2/viz/3ed6da4e-f2c0-11e4-8364-0e0c41326911/viz.json').done(function (vis, layers){
+	  cartodb.createVis('map', 'https://sadra1.cartodb.com/api/v2/viz/b302ca64-16b4-11e5-bc95-0e853d047bba/viz.json').done(function (vis, layers){
 	  	pluto = layers[1].getSubLayer(0);
+	  	pluto.on('featureClick', function(e, latlng, pos, data, subLayerIndex) {
+  			console.log("mouse over polygon with data: " + latlng);
+  			lat = latlng[0];
+  			lon = latlng[1];
+  			console.log("here is lat: "+lat+" and here is lon: "+lon)
+  			console.log("data is ",data)
+  			var schooldist = data.schooldist
+  			var pluto = data
+  			var sql = new cartodb.SQL({ user: 'sadra1' });
+				sql.execute("SELECT name_1,overall_gr, accessible, schooldist,  cartodb_id, the_geom, the_geom_webmercator FROM schools WHERE ST_Intersects( the_geom, ST_SetSRID(ST_POINT("+lon+","+lat+") , 4326)) and schooldist = "+schooldist)
+  				.done(function(data) {
+    				console.log(data.rows);
+    				var schoolsTemplate = _.template($('#schoolsTemplate').html())
+        			$('#schoolsContainer').html(schoolsTemplate(
+        				{
+        					data: data.rows,
+        					code: accessible_codes,
+        					pluto: pluto  
+
+
+        				}  
+        			))
+  				})
+		});
+
 	  });
-	}
+}
 
 
 $( window ).load(function() {
         console.log( "window loaded" );
+        
+
+
     
 	
 
@@ -106,3 +140,4 @@ $( window ).load(function() {
 		
 	});
 });
+
